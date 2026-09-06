@@ -451,7 +451,10 @@ function buildChatModel(
   if (modelId.startsWith('anthropic/')) {
     // Anthropic's API uses dashes everywhere ("claude-haiku-4-5"), while the
     // OpenRouter alias uses dots ("claude-haiku-4.5"). Normalize both.
-    const id = modelId.slice('anthropic/'.length).replace(/\./g, '-');
+    // Anthropic-compatible gateways (e.g. local cli-proxy) keep dotted IDs
+    // like "glm-5.3-flash" / "gpt-5.6-sol" — only normalize Claude models.
+    const bare = modelId.slice('anthropic/'.length);
+    const id = bare.startsWith('claude') ? bare.replace(/\./g, '-') : bare;
     const adaptiveThinking = usesAdaptiveAnthropicThinking(id);
     return {
       model: providers.anthropic()(id),
@@ -773,7 +776,7 @@ async function generateConversationTitle({
   const text = getParametricText(firstMessage.parts) || 'New conversation';
   try {
     const result = await generateText({
-      model: anthropic('claude-haiku-4-5'),
+      model: anthropic('glm-5.3-flash'),
       system:
         'Generate a short title for a 3D creation conversation. Return only the title.',
       prompt: text,
@@ -818,7 +821,7 @@ async function generateConversationSuggestions({
   const summary = `User request: ${firstUserText.slice(0, 400)}\n\nMost recent assistant reply: ${lastAssistantText.slice(0, 400)}`;
   try {
     const result = await generateText({
-      model: anthropic('claude-haiku-4-5'),
+      model: anthropic('glm-5.3-flash'),
       system:
         conversationType === 'creative'
           ? 'Given a 3D mesh design conversation, return an array of exactly 2 follow-up prompts the user might want to send next. Each prompt is a concise instruction of 3 words or fewer, not a question. Return exactly 2 items — no more, no fewer.'

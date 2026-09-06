@@ -276,7 +276,7 @@ export async function handleFalWebhookRequest(request: Request) {
         model = glbData.buffer.slice(
           glbData.byteOffset,
           glbData.byteOffset + glbData.byteLength,
-        );
+        ) as ArrayBuffer;
         debugLog('Extracted GLB size:', model.byteLength, 'bytes');
       } catch (zipError) {
         console.error('Failed to extract GLB from zip:', zipError);
