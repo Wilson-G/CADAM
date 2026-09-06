@@ -158,12 +158,19 @@ export default function parseParameters(script: string): Parameter[] {
       // Filtering empty tokens guards against names with leading, trailing,
       // or repeated underscores (e.g. `__width`) producing `word[0]` on an
       // empty string and crashing.
+      // Snake_case → Title Case for the visible label. `$fn` gets a
+      // special name because OpenSCAD users recognise it as resolution.
+      // Filtering empty tokens guards against names with leading, trailing,
+      // or repeated underscores (e.g. `__width`) producing `word[0]` on an
+      // empty string and crashing.
+      // 参数上一行的中文注释(如"// 总宽(毫米)")优先作为显示名,无注释回退变量名转写。
       let displayName = name
         .replace(/_/g, ' ')
         .split(' ')
         .filter(Boolean)
         .map((word) => word[0].toUpperCase() + word.slice(1))
         .join(' ');
+      if (description) displayName = description;
       if (name === '$fn') displayName = 'Resolution';
 
       // Flatten `name = [a, b, c]` (number[]) into N scalar sliders

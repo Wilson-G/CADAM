@@ -58,7 +58,7 @@ export function SignUpEmailView() {
       },
       onError: (error) => {
         toast({
-          title: 'Whoopsies',
+          title: '哎呀',
           description:
             error instanceof Error ? error.message : 'Something went wrong',
           variant: 'destructive',
@@ -71,8 +71,8 @@ export function SignUpEmailView() {
 
     if (!name.trim()) {
       toast({
-        title: 'Whoopsies',
-        description: 'Please enter your name',
+        title: '哎呀',
+        description: '请填写姓名',
         variant: 'destructive',
       });
       return;
@@ -80,8 +80,8 @@ export function SignUpEmailView() {
 
     if (password !== confirmPassword) {
       toast({
-        title: 'Whoopsies',
-        description: 'Passwords do not match',
+        title: '哎呀',
+        description: '两次密码不一致',
         variant: 'destructive',
       });
       return;
@@ -92,9 +92,8 @@ export function SignUpEmailView() {
       await signUp(email, password, name);
 
       toast({
-        title: 'Verify your email',
-        description:
-          'Please check your email to verify your account before signing in.',
+        title: '请验证邮箱',
+        description: '验证邮件已发送,请查收邮箱完成验证后再登录。',
       });
       sessionStorage.setItem('pendingSignupEmail', email);
       navigate({
@@ -103,7 +102,7 @@ export function SignUpEmailView() {
     } catch (error) {
       console.error(error);
       toast({
-        title: 'Whoopsies',
+        title: '哎呀',
         description:
           error instanceof Error ? error.message : 'Something went wrong',
         variant: 'destructive',
@@ -120,12 +119,10 @@ export function SignUpEmailView() {
           <div className="mb-4 flex flex-col items-center justify-center gap-2">
             <img
               src={`${import.meta.env.BASE_URL}/cadam-logo.svg`}
-              alt="CADAM Logo"
+              alt="智柜"
               className="h-8 w-auto"
             />
-            <h1 className="text-2xl font-semibold text-white">
-              Create Account
-            </h1>
+            <h1 className="text-2xl font-semibold text-white">创建账号</h1>
           </div>
           <div className="w-full py-2">
             <Button
@@ -134,7 +131,7 @@ export function SignUpEmailView() {
               disabled={isSigningInWithGoogle}
             >
               <GoogleIcon className="w-4" />
-              <span>Continue with Google</span>
+              <span>使用 Google 登录</span>
             </Button>
           </div>
 
@@ -208,7 +205,7 @@ export function SignUpEmailView() {
                   Creating account...
                 </>
               ) : (
-                'Create Account'
+                '创建账号'
               )}
             </Button>
 

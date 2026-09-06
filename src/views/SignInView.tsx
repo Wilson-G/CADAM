@@ -84,7 +84,7 @@ export function SignInView() {
       },
       onError: (error) => {
         toast({
-          title: 'Whoopsies',
+          title: '哎呀',
           description:
             error instanceof Error ? error.message : 'Something went wrong',
           variant: 'destructive',
@@ -105,11 +105,11 @@ export function SignInView() {
       const error = err as AuthError;
       const message =
         error.message === 'Invalid login credentials'
-          ? 'Invalid email or password'
-          : 'An error occurred while signing in';
+          ? '邮箱或密码错误'
+          : '登录时出错,请重试';
       setError(message);
       toast({
-        title: 'Whoopsies',
+        title: '哎呀',
         description: message,
         variant: 'destructive',
       });
@@ -130,7 +130,7 @@ export function SignInView() {
       const error = err as AuthError;
       setError(error.message);
       toast({
-        title: 'Whoopsies',
+        title: '哎呀',
         description: error.message,
         variant: 'destructive',
       });
@@ -153,7 +153,7 @@ export function SignInView() {
       const error = err as AuthError;
       setError(error.message);
       toast({
-        title: 'Whoopsies',
+        title: '哎呀',
         description: error.message,
         variant: 'destructive',
       });
@@ -188,7 +188,7 @@ export function SignInView() {
                 Check your email
               </h3>
               <p className="text-center text-sm text-gray-400">
-                We sent a magic link to{' '}
+                魔法链接已发送到{' '}
                 <span className="font-medium text-white">{email}</span>
               </p>
             </div>
@@ -284,7 +284,7 @@ export function SignInView() {
             <div>
               <img
                 src={`${import.meta.env.BASE_URL}/cadam-logo.svg`}
-                alt="CADAM Logo"
+                alt="智柜"
                 className="w-32"
               />
             </div>
@@ -296,7 +296,7 @@ export function SignInView() {
               disabled={isSigningInWithGoogle}
             >
               <GoogleIcon className="w-4" />
-              <span>Continue with Google</span>
+              <span>使用 Google 登录</span>
             </Button>
           </div>
 
@@ -359,9 +359,7 @@ export function SignInView() {
                   setError(null);
                 }}
               >
-                {mode === 'password'
-                  ? 'Sign in with magic link instead'
-                  : 'Sign in with password instead'}
+                {mode === 'password' ? '改用魔法链接登录' : '改用密码登录'}
               </button>
             </div>
 
@@ -369,10 +367,10 @@ export function SignInView() {
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  {mode === 'password' ? 'Signing in...' : 'Sending...'}
+                  {mode === 'password' ? '登录中…' : '发送中…'}
                 </>
               ) : mode === 'password' ? (
-                'Sign In'
+                '登录'
               ) : (
                 'Send Magic Link'
               )}

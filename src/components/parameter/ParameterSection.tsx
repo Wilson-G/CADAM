@@ -192,7 +192,7 @@ export function ParameterSection({
       <div className="flex h-14 items-center justify-between border-b border-adam-neutral-700 bg-gradient-to-r from-adam-bg-secondary-dark to-adam-bg-secondary-dark/95 px-6 py-6">
         <div className="flex items-center gap-2">
           <span className="text-lg font-semibold tracking-tight text-adam-text-primary">
-            Parameters
+            参数
           </span>
         </div>
         <TooltipProvider>
@@ -232,7 +232,7 @@ export function ParameterSection({
                   className="group flex w-full items-center justify-between gap-2 rounded-md py-1 text-xs font-semibold text-adam-text-primary transition-colors focus:outline-none"
                 >
                   <span className="flex items-center gap-2">
-                    Dimensions
+                    尺寸
                     <span className="text-[10px] text-adam-neutral-400">
                       {mainParameters.length}
                     </span>
@@ -267,7 +267,7 @@ export function ParameterSection({
                   className="group flex w-full items-center justify-between gap-2 rounded-md py-1 text-xs font-semibold text-adam-text-primary transition-colors focus:outline-none"
                 >
                   <span className="flex items-center gap-2">
-                    Colors
+                    颜色
                     <span className="text-[10px] text-adam-neutral-400">
                       {colorParameters.length}
                     </span>

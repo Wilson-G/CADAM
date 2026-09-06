@@ -7,7 +7,7 @@ const assetUrl = (path: string) =>
 
 export const Route = createRootRoute({
   head: () => ({
-    meta: [{ title: 'CADAM' }],
+    meta: [{ title: '智柜 · 全屋定制 AI 工作台' }],
     links: [{ rel: 'stylesheet', href: appCss }],
   }),
   component: RootComponent,
@@ -28,7 +28,7 @@ function RootComponent() {
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="zh-CN">
       <head>
         <meta charSet="UTF-8" />
         <meta

@@ -83,9 +83,9 @@ export function ChatReasoning({
             return <Shimmer duration={1}>{`${thinkingVerb}...`}</Shimmer>;
           }
           if (duration === undefined) {
-            return <p>Thought for a few seconds</p>;
+            return <p>思考了片刻</p>;
           }
-          return <p>Thought for {duration} seconds</p>;
+          return <p>思考了 {duration} 秒</p>;
         }}
       />
       {isDetailsOpen ? (

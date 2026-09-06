@@ -156,6 +156,11 @@ export default function parseParameters(script: string): Parameter[] {
         .split(' ')
         .map((word) => word[0].toUpperCase() + word.slice(1))
         .join(' ');
+      // 参数名上一行的注释(如"// 总宽(毫米)")更贴近业务语义,优先作为显示名。
+      // 无注释时回退到变量名转写,行为与上游一致。
+      if (description) {
+        displayName = description;
+      }
       if (name === '$fn') {
         displayName = 'Resolution';
       }

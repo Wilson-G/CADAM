@@ -12,7 +12,6 @@ import { Model } from '@shared/types';
 import { MessageItem } from '../types/misc.ts';
 import { LimitReachedMessage } from '@/components/LimitReachedMessage';
 import { LowPromptsWarningMessage } from '@/components/LowPromptsWarningMessage';
-import { NewProductBanner } from '@/components/NewProductBanner';
 import { FreePlanTrialPill } from '@/components/FreePlanTrialPill';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { cn } from '@/lib/utils';
@@ -95,11 +94,11 @@ export function PromptView() {
   const getTimeBasedGreeting = useMemo(() => {
     const hour = new Date().getHours();
     if (hour < 12) {
-      return 'Good morning';
+      return '早上好';
     } else if (hour < 18) {
-      return 'Good afternoon';
+      return '下午好';
     } else {
-      return 'Good evening';
+      return '晚上好';
     }
   }, []); // Empty dependency array means it only calculates once per page load
 
@@ -319,7 +318,7 @@ export function PromptView() {
                       return;
                     }
                   }}
-                  placeholder="Start building with Adam..."
+                  placeholder="描述你想要的柜子,例如:三门衣柜,宽1200 深600 高2200,两层层板,板厚18mm…"
                   type={type}
                   disabled={limitReached || isGenerating}
                   model={model}
@@ -358,9 +357,9 @@ export function PromptView() {
                     }}
                     className="!text-adam-blue hover:!text-adam-blue/80"
                   >
-                    Sign in
+                    登录
                   </Link>{' '}
-                  or{' '}
+                  或{' '}
                   <Link
                     to="/signup"
                     onClick={(e) => {
@@ -371,22 +370,15 @@ export function PromptView() {
                     }}
                     className="!text-adam-blue hover:!text-adam-blue/80"
                   >
-                    create an account
+                    注册账号
                   </Link>{' '}
-                  to start generating
+                  后即可开始生成
                 </p>
               )}
             </div>
           </div>
 
-          {/* Float the banner in the gap between the (vertically centered)
-              composer and the bottom edge: a band over the lower third, with
-              the card centered inside it, instead of glued to bottom-0. */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 top-[55%] flex items-center justify-center px-4 md:px-8">
-            <div className="pointer-events-auto w-full max-w-2xl">
-              <NewProductBanner />
-            </div>
-          </div>
+          {/* 内部部署:不展示产品营销横幅 */}
         </main>
       </div>
     </div>

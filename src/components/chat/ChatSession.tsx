@@ -355,8 +355,7 @@ export function ChatSession({
             );
             toast({
               title: "Couldn't save the reply",
-              description:
-                'Your message is shown but may not survive a refresh. Please retry if it disappears.',
+              description: '你的消息已显示,但刷新后可能丢失,如消失请重发。',
               variant: 'destructive',
             });
           }
@@ -551,8 +550,7 @@ export function ChatSession({
             persistFailedRef.current = true;
             toast({
               title: "Couldn't save this step",
-              description:
-                "The model is shown but the build wasn't saved, so Adam paused. Please retry.",
+              description: '模型已展示但尚未保存,生成已暂停,请重试。',
               variant: 'destructive',
             });
           }
@@ -661,7 +659,7 @@ export function ChatSession({
       }
       const message = error instanceof Error ? error.message : String(error);
       toast({
-        title: 'Adam ran into a problem',
+        title: '生成遇到问题',
         description: message || 'The model call failed. Please try again.',
         variant: 'destructive',
       });
@@ -981,7 +979,7 @@ export function ChatSession({
         <TextAreaChat
           type={conversation.type}
           onSubmit={(parts) => void handleSend(parts)}
-          placeholder="Keep iterating with Adam..."
+          placeholder="继续调整,例如:把高度改成 2400…"
           isLoading={isLoading}
           stopGenerating={stop}
           disabled={isDisabled}

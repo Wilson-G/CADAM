@@ -463,7 +463,7 @@ function TextAreaChat({
   onSubmit,
   onFocus,
   isLoading = false,
-  placeholder = 'What can Adam help you build today?',
+  placeholder = '描述你想要的柜子…',
   type,
   stopGenerating,
   disabled = false,
@@ -670,12 +670,12 @@ function TextAreaChat({
   // Helper to decide which placeholder we're targeting right now
   const computeTargetPlaceholder = useCallback(() => {
     if (type === 'creative') {
-      if (images.length > 0) return 'Edit uploaded image...';
+      if (images.length > 0) return '描述要修改的地方…';
       // Model-specific placeholders
-      if (model === 'quality') return 'Make a rough 3D asset...';
-      if (model === 'fast') return 'Make a textureless 3D asset...';
-      if (model === 'ultra') return 'Make a production ready 3D asset...';
-      return 'Speak anything into existence...';
+      if (model === 'quality') return '快速生成粗模…';
+      if (model === 'fast') return '生成无贴图 3D 模型…';
+      if (model === 'ultra') return '生成生产级 3D 模型…';
+      return '说出你想要的,它就存在…';
     }
     return placeholder;
   }, [type, images.length, placeholder, model]);
