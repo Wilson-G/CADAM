@@ -355,6 +355,22 @@ export function ParameterSection({
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+          {selectedFormat === 'stl' && !formatAvailable.stl && code && (
+            <p className="text-xs text-adam-neutral-400">
+              模型正在编译,完成后即可导出
+              STL;若长时间无响应,可先拖动任一参数触发重新编译。
+            </p>
+          )}
+          {selectedFormat === 'dxf' && isExporting && (
+            <p className="text-xs text-adam-neutral-400">
+              正在现场编译整柜 2D 投影,复杂模型约需 1-2 分钟,请稍候。
+            </p>
+          )}
+          {selectedFormat === 'dxf' && !formatAvailable.dxf && !isExporting && (
+            <p className="text-xs text-adam-neutral-400">
+              DXF 导出在预览编译完成后可用。
+            </p>
+          )}
         </div>
       </div>
     </div>
